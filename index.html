@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAWOMS — Streetwear. £199. All sizes.</title>
+  <meta name="description" content="SAWOMS: minimal, premium, colourful streetwear. Menswear, womenswear and unisex. Every piece £199, every size in stock (XS–XXL).">
+  <meta property="og:title" content="SAWOMS — Streetwear">
+  <meta property="og:description" content="Every piece £199. Every size in stock.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/logo.png">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="icon" href="/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#shop">Skip to shop</a>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>ALL SIZES IN STOCK</span><span>EVERY PIECE £199</span><span>FREE UK SHIPPING</span><span>XS — XXL</span>
+      <span>ALL SIZES IN STOCK</span><span>EVERY PIECE £199</span><span>FREE UK SHIPPING</span><span>XS — XXL</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <a class="logo" href="/" aria-label="SAWOMS home">
+      <img src="/assets/logo.png" alt="" width="34" height="38">
+      <span>SAWOMS</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <button data-cat="menswear">Menswear</button>
+      <button data-cat="womenswear">Womenswear</button>
+      <button data-cat="unisex">Unisex</button>
+    </nav>
+    <div class="header__right">
+      <span class="currency" title="Prices fixed in GBP">£ GBP</span>
+      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Drop 01 — Minimal. Loud. Premium.</p>
+        <h1>WEAR<br>THE<br><em>SIGNAL.</em></h1>
+        <p class="hero__sub">Heavyweight streetwear, garment washed and built boxy. One price. Every size. No waiting.</p>
+        <div class="hero__cta">
+          <a class="btn btn--accent" href="#shop">Shop the drop</a>
+          <span class="pill">£199 · XS–XXL</span>
+        </div>
+      </div>
+      <div class="hero__art" id="heroArt" aria-hidden="true"></div>
+    </section>
+
+    <section class="shop" id="shop">
+      <div class="shop__head">
+        <h2>The Drop</h2>
+        <div class="filters" role="tablist" aria-label="Filter by category">
+          <button class="chip is-active" data-filter="all" role="tab">All</button>
+          <button class="chip" data-filter="menswear" role="tab">Menswear</button>
+          <button class="chip" data-filter="womenswear" role="tab">Womenswear</button>
+          <button class="chip" data-filter="unisex" role="tab">Unisex</button>
+        </div>
+      </div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </section>
+
+    <section class="statement">
+      <h2>ONE PRICE.<br>EVERY SIZE.<br>ZERO GAMES.</h2>
+      <p>Every SAWOMS piece is £199. XS to XXL is always in stock. No sizing roulette, no sold-out tax.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="/assets/logo-white.png" alt="SAWOMS logo" width="64" height="72">
+        <p>SAWOMS<br>Streetwear. Minimal. Loud.</p>
+      </div>
+      <form class="newsletter" id="newsletter" novalidate>
+        <label for="nlEmail">Get the next drop first</label>
+        <div class="newsletter__row">
+          <input id="nlEmail" type="email" placeholder="you@email.com" required autocomplete="email">
+          <button class="btn btn--accent" type="submit">Join</button>
+        </div>
+        <small id="nlMsg" role="status"></small>
+      </form>
+      <nav class="footer__links" aria-label="Policies">
+        <button data-policy="shipping">Shipping</button>
+        <button data-policy="returns">Returns</button>
+        <button data-policy="privacy">Privacy</button>
+        <button data-policy="terms">Terms</button>
+      </nav>
+      <nav class="footer__links" aria-label="Social">
+        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> SAWOMS. All rights reserved.</span>
+      <span>£ GBP · All prices include VAT</span>
+    </div>
+  </footer>
+
+  <!-- Product modal -->
+  <div class="overlay" id="overlay" hidden></div>
+  <dialog class="modal" id="productModal" aria-labelledby="pmName">
+    <button class="modal__close" data-close aria-label="Close">×</button>
+    <div class="pm">
+      <div class="pm__gallery">
+        <div class="pm__main" id="pmMain"></div>
+        <div class="pm__thumbs" id="pmThumbs"></div>
+      </div>
+      <div class="pm__info">
+        <p class="badge">ALL SIZES IN STOCK — £199</p>
+        <h3 id="pmName"></h3>
+        <p class="pm__price">£199 <small>GBP</small></p>
+
+        <fieldset class="field">
+          <legend>Colour: <b id="pmColorName"></b></legend>
+          <div class="swatches" id="pmColors"></div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Size: <b id="pmSizeName">Select</b></legend>
+          <div class="sizes" id="pmSizes"></div>
+          <small class="err" id="pmErr" hidden>Pick a size first.</small>
+        </fieldset>
+
+        <div class="field">
+          <span class="legend">Quantity</span>
+          <div class="qty">
+            <button type="button" id="pmMinus" aria-label="Decrease">−</button>
+            <output id="pmQty">1</output>
+            <button type="button" id="pmPlus" aria-label="Increase">+</button>
+          </div>
+        </div>
+
+        <button class="btn btn--accent btn--block" id="pmAdd">Add to cart — £199</button>
+
+        <dl class="details">
+          <dt>Fabric</dt><dd id="pmFabric"></dd>
+          <dt>Fit</dt><dd id="pmFit"></dd>
+          <dt>Care</dt><dd>Cold wash inside out. Do not tumble dry.</dd>
+        </dl>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Cart drawer -->
+  <aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer__head">
+      <h3>Cart</h3>
+      <button class="modal__close" id="drawerClose" aria-label="Close cart">×</button>
+    </div>
+    <ul class="cart-list" id="cartList"></ul>
+    <p class="cart-empty" id="cartEmpty">Cart empty. Fix that.</p>
+    <div class="drawer__foot">
+      <div class="row"><span>Items</span><b id="cartItems">0</b></div>
+      <div class="row"><span>Shipping (UK)</span><b>Free</b></div>
+      <div class="row total"><span>Total</span><b id="cartTotal">£0</b></div>
+      <button class="btn btn--accent btn--block" id="checkoutBtn" disabled>Checkout</button>
+      <small id="checkoutMsg" role="status"></small>
+    </div>
+  </aside>
+
+  <dialog class="modal modal--sm" id="policyModal" aria-labelledby="polTitle">
+    <button class="modal__close" data-close aria-label="Close">×</button>
+    <h3 id="polTitle"></h3>
+    <p id="polBody"></p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
